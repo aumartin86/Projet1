@@ -217,3 +217,18 @@ and open the template in the editor.
 .position_bouton{
     margin-left:30%
 }
+
+.menu_user{
+    background-color: #29B6E9;
+    width:200px;
+    height:590px;
+    float:left;
+}
+
+.page_user{
+    margin-top:10px;
+    background:white;
+    width:1139px;
+    height:580px;
+    margin-left:210px;
+}
