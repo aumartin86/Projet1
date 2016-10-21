@@ -3,14 +3,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:pm="http://primefaces.org/mobile">
+      xmlns:p="http://primefaces.org/ui" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <f:view contentType="text/html">
         <h:head>
             <link rel="stylesheet" href="styleApplication.css" type="text/css" />
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Serie Management - Admin</title>
+                <title>Serie Management</title>
             </f:facet>
         </h:head>
 
@@ -19,27 +19,24 @@
 
             <p:layout fullPage="true">
 
-                <p:layoutUnit  position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    <div class="position_bouton_admin">
-                        <p:button class="bouton_admin" outcome="homeAdmin" id="iconOnly" icon="ui-icon-home" title="Page d'accueil" />
-                        <p:button class="bouton_admin" outcome="index" icon="ui-icon-power" title="Déconnexion" />
-                    </div>                    
-                    <h1 class="titre_accueil_admin">Serie Management</h1>                    
+                <p:layoutUnit  position="north" size="50" closable="true" collapsible="true">
+                    <h1 class="titre_accueil_user">Serie Management</h1>                  
                 </p:layoutUnit>
                 
 
                 <p:layoutUnit position="south" size="20" closable="true" collapsible="true">
-                    Footer
+                    
                 </p:layoutUnit>
                 
 
-                <p:layoutUnit  position="west" size="270" header="Menu" collapsible="true" >                   
-                    <ui:include src="menu_admin.xhtml" />                    
+                <p:layoutUnit  position="west" size="240" header="Menu" style="font-size: 15px;" collapsible="true" >                   
+                                       
                 </p:layoutUnit>
                     
 
-                <p:layoutUnit position="center">
-                               
+                <p:layoutUnit position="center"  >
+                     
+                      
                     
                 </p:layoutUnit>
 
