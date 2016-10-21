@@ -40,7 +40,7 @@
 
                 <p:layoutUnit  position="center" >    
                     
-                    <p:dataGrid  var="item" value="#{serieControl.allSeries}" columns="1" layout="grid"
+                    <p:dataGrid  var="item" value="#{serieControl.allSeries}" columns="1" 
                         rows="12" paginator="true" paginatorPosition="bottom" 
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         >
@@ -58,7 +58,7 @@
                                             <br/>
                                             
                                             <pm:field>
-                                                <p:fileUpload style="font-size:12px;" value="#{serieControl.file.affiche}" mode="simple" skinSimple="true"/>
+                                                <p:fileUpload style="font-size:12px;" value="#{serieControl.file.affiche}" mode="simple" />
                                             </pm:field>
                                             <br/>
                                             <br/>                                                                                        
@@ -157,7 +157,7 @@
                                     <p:panelGrid  columns="1" style="width:100%; float:left;">
                                     <p:outputLabel class="souligner" value="Genre(s) : "/>   
                                     
-                                        <p:dataGrid   var="genreitem" value="#{item.genreCollection}" columns="10" layout="grid">                                
+                                        <p:dataGrid   var="genreitem" value="#{item.genreCollection}" columns="10" >                                
                                             <h:outputText value="|#{genreitem.nomGenre}|"/>
                                         </p:dataGrid>
                                     </p:panelGrid>
@@ -167,7 +167,7 @@
                                     <p:panelGrid  columns="1" style="width:100%; float:left;">
                                     <p:outputLabel class="souligner" value="Acteurs : "/>   
                                     
-                                        <p:dataGrid   var="acteuritem" value="#{item.acteurCollection}" columns="10" layout="grid">                                
+                                        <p:dataGrid   var="acteuritem" value="#{item.acteurCollection}" columns="10" >                                
                                             <h:outputText value="|#{acteuritem.prenomActeur} #{acteuritem.nomActeur}|"/>
                                         </p:dataGrid>
                                     </p:panelGrid>
