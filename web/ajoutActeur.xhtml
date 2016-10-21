@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" href="styleApplication.css" type="text/css" />
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Serie Management - Admin</title>
+            </f:facet>
+        </h:head>
+
+        <h:body class="fond_page">
+            
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <div class="position_bouton_admin">
+                        <p:button class="bouton_admin" outcome="homeAdmin" id="iconOnly" icon="ui-icon-home" title="Page d'accueil" />
+                        <p:button class="bouton_admin" outcome="index" icon="ui-icon-power" title="Déconnexion" />
+                    </div>                    
+                    <h1 class="titre_accueil_admin">Serie Management</h1>                    
+                </p:layoutUnit>
+                
+
+                <p:layoutUnit position="south" size="20" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+                
+
+                <p:layoutUnit  position="west" size="270" header="Menu" collapsible="true" >                   
+                    <ui:include src="menu_admin.xhtml" />                    
+                </p:layoutUnit>
+                    
+
+                <p:layoutUnit position="center" >    
+                    
+                    
+                    <p:dataTable id="acteurDetail1" var="item" value="#{acteurControl.allActeurs}" rows="10" paginator="true" paginatorPosition="bottom">
+                        
+                        <f:facet name="header">
+                            Liste des acteurs
+                            <p:commandButton title="Ajouter" class="boutonAjoutGenre" icon="ui-icon-plus" onclick="PF('dlg1').show();" type="button" />               
+ 
+                            <p:dialog class="formulaire_ajout" header="Ajouter un acteur" widgetVar="dlg1" showEffect="pop" resizable="false" modal="true" appendTo="@(body)">
+                                    <h:form>
+                                        <h:panelGrid columns="2">
+                                            <h:outputLabel style="color:black;" value="Nom:" for="nom" />
+                                            <h:inputText id="nom" value="#{acteurControl.saisie.nomActeur}" title="Nom" required="true" requiredMessage="The Nom field is required."/> 
+                                            <h:outputLabel style="color:black;" value="Prénom:" for="prenom" />
+                                            <h:inputText id="prenom" value="#{acteurControl.saisie.prenomActeur}" title="prenom" required="true" requiredMessage="The prenom field is required."/>
+                                            
+                                        </h:panelGrid>
+                                        <br/>
+                                        <p:commandButton style="margin-left:26%" value="Sauvegarder" action="#{acteurControl.saveActeur()}" onclick="PF('dlg1').close();" />
+                                                
+                                    </h:form>
+                            </p:dialog>
+                            
+                        </f:facet>
+                        
+                        
+                        
+                        <p:column headerText="Id" >
+                            <h:outputText  value="#{item.idActeur}" />
+                        </p:column>
+                        
+                        <p:column headerText="Nom">
+                            <h:outputText  value="#{item.nomActeur}" />
+                        </p:column>
+                        
+                        <p:column headerText="Prénom">
+                            <h:outputText value="#{item.prenomActeur}" />
+                        </p:column>
+                        
+                        <p:column headerText="">                          
+                            <p:commandLink title="Modifier" update=":form2:acteurDetail2" onclick="PF('dlg3').show();" >
+                                <h:outputText styleClass="ui-icon ui-icon-pencil" style="margin:0 auto;"/>
+                                <f:setPropertyActionListener value="#{item}" target="#{acteurControl.saisie}"  />
+                            </p:commandLink>
+
+                        </p:column>
+                        
+                        <p:column headerText="">
+                                                    
+                            <p:commandLink title="Supprimer" update=":form:acteurDetail" onclick="PF('dlg2').show();" >
+                                <h:outputText styleClass="ui-icon ui-icon-trash" style="margin:0 auto;"/>
+                                <f:setPropertyActionListener value="#{item}" target="#{acteurControl.saisie}"  />
+                            </p:commandLink>
+                        </p:column>
+                    
+                    </p:dataTable>
+                 
+                <p:dialog  class="formulaire_ajout" header="Supprimer un acteur" widgetVar="dlg2"  resizable="false" modal="true" appendTo="@(body)" >
+                    <h:form id="form">
+                        <p:outputPanel  id="acteurDetail" >
+                            <h:panelGrid  columns="2" >
+                                <h:outputLabel style="color:black;" value="ID :" for="id" />
+                                <h:outputText id="id" style="color:black;"  value="#{acteurControl.saisie.idActeur}" title="id" />
+                                <h:outputLabel style="color:black;" value="Nom :" for="nom" />
+                                <h:outputText id="nom" style="color:black;" value="#{acteurControl.saisie.nomActeur}" title="Nom" /> 
+                                <h:outputLabel style="color:black;" value="prenom :" for="prenom" />
+                                <h:outputText id="prenom" style="color:black;" value="#{acteurControl.saisie.prenomActeur}" title="Prenom" />
+                            </h:panelGrid>
+                                <br/>
+                                <p:commandButton style="margin-left:26%" value="Supprimer" action="#{acteurControl.supprimerActeur()}"  oncomplete="PF('dlg2').hide();"/>
+                        </p:outputPanel>
+                    </h:form>
+                </p:dialog> 
+                    
+                    
+                <p:dialog  class="formulaire_ajout" header="Modifier un acteur" widgetVar="dlg3"  resizable="false" modal="true" appendTo="@(body)" >
+                    <h:form id="form2">
+                        <p:outputPanel  id="acteurDetail2" >
+                            <h:panelGrid  columns="2" >           
+                                <h:outputLabel class="formulaire_modification" value="ID :" for="id" />
+                                <h:outputText id="id" class="formulaire_modification"  value="#{acteurControl.saisie.idActeur}" title="id" />                               
+                                <h:outputLabel class="formulaire_modification" value="Nouveau Nom :" for="newnom" />
+                                <h:inputText id="newnom" class="formulaire_modification" value="#{acteurControl.saisie.nomActeur}"  title="newnom" />  
+                                <h:outputLabel class="formulaire_modification" value="Nouveau prénom :" for="newprenom" />
+                                <h:inputText id="newprenom" class="formulaire_modification" value="#{acteurControl.saisie.prenomActeur}"  title="newprenom" />
+                            </h:panelGrid> 
+                                <br/>
+                                <p:commandButton style="margin-left:36%" value="Modifier" action="#{acteurControl.modifierActeur()}"  oncomplete="PF('dlg3').hide();"/>
+                        </p:outputPanel>
+                    </h:form>
+                </p:dialog> 
+                    
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+          
+
+     <h:form >
+                        <p:growl id="messages" showDetail="true"/>
+                        
+                        <p:slideMenu class="slideMenuAdmin" >
+                            <p:submenu label="Gestion Séries" icon="ui-icon-video" class="submenu" style="margin-bottom: 15px">
+                                <p:menuitem value="Afficher les séries" outcome="afficheSeries" update="messages" icon="ui-icon-note" />
+                                <p:menuitem value="Gérer les séries" outcome="ajoutSerie" update="messages" icon="ui-icon-plus" />
+                            </p:submenu>
+
+                            <p:submenu class="submenu"  label="Gestion Saisons" icon="ui-icon-note" style="margin-bottom: 15px">
+                                <p:menuitem value="Ajouter" outcome="ajoutSerie" update="messages" icon="ui-icon-plus" />
+                                <p:menuitem value="Modifier" outcome="ajoutSerie" update="messages" icon="ui-icon-refresh" />
+                                <p:menuitem value="Supprimer" outcome="ajoutSerie" update="messages" icon="ui-icon-trash" />
+                            </p:submenu>
+
+                            <p:submenu class="submenu"  label="Gestion Episodes" icon="ui-icon-play" style="margin-bottom: 15px">
+                                <p:menuitem value="Ajouter" outcome="ajoutSerie" update="messages" icon="ui-icon-plus" />
+                                <p:menuitem value="Modifier" outcome="ajoutSerie" update="messages" icon="ui-icon-refresh" />
+                                <p:menuitem value="Supprimer" outcome="ajoutSerie" update="messages" icon="ui-icon-trash" />
+                            </p:submenu>
+
+                            <p:submenu class="submenu"  label="Gestion Réalisateurs" icon="ui-icon-person" style="margin-bottom: 15px">
+                                <p:menuitem value="Afficher les réalisateurs" outcome="afficheRealisateur" update="messages" icon="ui-icon-plus" />
+                                <p:menuitem value="Gérer les réalisateurs" outcome="ajoutRealisateur" update="messages" icon="ui-icon-refresh" />
+                                
+                            </p:submenu>
+
+                            <p:submenu class="submenu"  label="Gestion Acteurs" icon="ui-icon-person" style="margin-bottom: 15px">
+                                <p:menuitem value="Afficher les acteurs" outcome="afficheActeur" update="messages" icon="ui-icon-note" />
+                                <p:menuitem value="Gérer les acteurs" outcome="ajoutActeur" update="messages" icon="ui-icon-plus" />
+                            </p:submenu>
+
+                            <p:submenu class="submenu"  label="Gestion Genres" icon="ui-icon-script" >
+                                <p:menuitem value="Afficher" outcome="afficheGenres" update="messages" icon="ui-icon-note" />
+                                <p:menuitem value="Ajouter" outcome="ajoutGenres" update="messages" icon="ui-icon-plus" />
+                                <p:menuitem value="Modifier" outcome="modifGenres" update="messages" icon="ui-icon-refresh" />
+                                <p:menuitem value="Supprimer" outcome="supprimeGenres" update="messages" icon="ui-icon-trash" />
+                            </p:submenu>
+
+
+                        </p:slideMenu>  
+                    </h:form>
+</html>

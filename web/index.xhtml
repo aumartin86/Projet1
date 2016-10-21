@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile">
+    <h:head>
+        <title>Projet JEE</title>
+        <link rel="stylesheet" href="styleApplication.css" type="text/css" /> 
+        <link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'/>
+    </h:head>
+    
+    <h:body class="accueil" >
+        
+        <div class="position_bouton_admin">
+            <p:button outcome="homeAdmin" id="iconOnly" icon="ui-icon-person" title="Espace administrateur" />
+        </div>
+        
+        <h1 class="titre_accueil">Serie Management</h1>
+               
+        <div class="connexion">
+            
+            <h:form>
+                <fieldset class="fieldset_connexion">   
+                    <legend class="legende_connexion"> Se connecter </legend>                        
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel class="label_connexion" value="Identifiant :" for="id" />
+                            <p:inputText id="id" value="" title="Id" placeholder="Identifiant" required="true"/>
+                            <h:outputLabel class="label_connexion" value="Mot de passe :" for="mdp" />
+                            <p:password id="mdp" value="" title="mdp" placeholder="Mot de passe" required="true"/>
+                        </h:panelGrid>  
+                    <p:button class="bouton_connexion" outcome="index" value="Valider" />
+                </fieldset>               
+            </h:form>
+        </div>   
+        
+    </h:body>
+</html>
+

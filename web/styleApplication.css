@@ -1,0 +1,203 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 sept. 2016, 08:31:52
+    Author     : Audrey
+*/
+
+.accueil{
+    background-image: url(image/accueil.PNG);
+}
+
+.fond_page{
+    background:#373742;
+}
+
+.position_bouton_admin{
+    float: right;
+    
+}
+
+.titre_accueil{
+
+    color: #1e1e1e;
+    text-shadow: 10px 5px 5px #767676;
+    color:white;
+    text-shadow:
+        1px -1px 0 #767676,
+        -1px 2px 1px #767474,
+        -2px 4px 1px #7b7a7a,
+        -3px 6px 1px #828181,
+        -4px 8px 1px #8b8a89,
+        -5px 10px 1px #949392;
+    font-family: 'Gabriela', serif;
+    font-size: 100px;
+    letter-spacing: .10em;
+    text-align: center;
+}
+
+
+.connexion{
+    display:flex;
+    justify-content: center;
+    margin-top:100px;
+    
+}
+
+.fieldset_connexion{
+    background-color: rgba(0, 0, 0, 0.6); 
+    color: rgba(0, 0, 0, 0.6);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+       
+}
+
+.legende_connexion{
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: rgba(0, 0, 0, 0.7);
+    font-family: times new roman;
+    color:white;
+    font-weight: bold;
+    font-size:20px;
+    border-style: solid;
+    border-color:white;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-bottom:5px;
+    padding-top:5px;
+    padding-left:5px;
+    padding-right:5px;
+    margin-bottom: 10px;
+    
+}
+
+.label_connexion{
+    color:white;
+    font-size:18px;
+    font-family: times new roman;
+}
+
+.bouton_connexion{
+    margin-top:25px;
+    margin-left:125px;
+}
+
+.bouton_connexion:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+/* Admin */
+
+
+
+.titre_accueil_admin{
+    color: #1e1e1e;
+    text-shadow: 10px 5px 5px #767676;
+    color:white;
+    text-shadow:
+        1px -1px 0 #767676,
+        -1px 2px 1px #767474,
+        -2px 4px 1px #7b7a7a;
+
+    font-family: 'Gabriela', serif;
+    font-size: 32px;
+    letter-spacing: .10em;
+    text-align: center;
+}
+
+.slideMenuAdmin{
+    width:240px; 
+    margin-top: 10px;
+    
+    
+}
+
+/*Genre*/
+
+
+.boutonAjoutGenre:hover{
+  background: #34d939;
+  background-image: -webkit-linear-gradient(top, #34d939, #2bb834);
+  background-image: -moz-linear-gradient(top, #34d939, #2bb834);
+  background-image: -ms-linear-gradient(top, #34d939, #2bb834);
+  background-image: -o-linear-gradient(top, #34d939, #2bb834);
+  background-image: linear-gradient(to bottom, #34d939, #2bb834);
+  border-color:green;
+  text-decoration: none;
+}
+
+
+.formulaire_ajout{
+    background:white;
+}
+
+
+
+.bouton_supprimer:hover{
+      background: #eb1111;
+  background-image: -webkit-linear-gradient(top, #eb1111, #c70e0e);
+  background-image: -moz-linear-gradient(top, #eb1111, #c70e0e);
+  background-image: -ms-linear-gradient(top, #eb1111, #c70e0e);
+  background-image: -o-linear-gradient(top, #eb1111, #c70e0e);
+  background-image: linear-gradient(to bottom, #eb1111, #c70e0e);
+  text-decoration: none;
+  border-color: red;
+}
+
+
+.saisie_genre{
+    margin-left: 20px;
+    
+}
+
+.formulaire_modification{
+    color:black;
+    float:left;
+}
+
+.taille_bandeau{
+    width: 150px;
+}
+
+.souligner{
+    text-decoration: underline;
+}
+
+.tailleImage{
+    width: 200px;
+    height:200px;
+}
+
+.taille_resume{
+    width: 350px;
+    height: 200px;
+}
+
+.taille_saisie{
+    margin-left: 20px;
+    width: 238px;    
+}
+
+
+.test{
+    border-color: red;
+    border-style: solid;
+    background: black;
+    width:300px;
+}
+
+.position_bouton{
+    margin-left:30%
+}

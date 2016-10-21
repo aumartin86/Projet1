@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" href="styleApplication.css" type="text/css" />
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Serie Management - Admin</title>
+            </f:facet>
+        </h:head>
+
+        <h:body class="fond_page">
+            
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <div class="position_bouton_admin">
+                        <p:button class="bouton_admin" outcome="homeAdmin" id="iconOnly" icon="ui-icon-home" title="Page d'accueil" />
+                        <p:button class="bouton_admin" outcome="index" icon="ui-icon-power" title="Déconnexion" />
+                    </div>                    
+                    <h1 class="titre_accueil_admin">Serie Management</h1>                    
+                </p:layoutUnit>
+                
+
+                <p:layoutUnit position="south" size="20" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+                
+
+                <p:layoutUnit  position="west" size="270" header="Menu" collapsible="true" >                   
+                    <ui:include src="menu_admin.xhtml" />
+                    
+                </p:layoutUnit>
+                    
+
+                <p:layoutUnit position="center" >
+                    
+                    
+             
+                        <p:dataGrid var="item" value="#{genreControl.allGenres}" columns="3" layout="grid"
+                        rows="9" paginator="true" paginatorPosition="bottom" id="genres"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        >
+ 
+                            <f:facet name="header">
+                                Liste des genres
+                                <p:commandButton title="Ajouter" class="boutonAjoutGenre" icon="ui-icon-plus" onclick="PF('dlg1').show();" type="button" />               
+ 
+                                <p:dialog class="formulaire_ajout" header="Ajouter un Genre" widgetVar="dlg1" showEffect="pop" resizable="false" modal="true" appendTo="@(body)">
+                                    <h:form>
+                                        <h:panelGrid columns="2">
+                                            <h:outputLabel style="color:black;" value="Nom:" for="nom" />
+                                            <h:inputText id="nom" value="#{genreControl.saisie.nomGenre}" title="Nom" required="true" requiredMessage="The Nom field is required."/>   
+                                        </h:panelGrid>
+                                        <br/>
+                                        <p:commandButton style="margin-left:26%" value="Sauvegarder" action="#{genreControl.saveGenre()}" onclick="PF('dlg1').close();" process="@this" />
+                                                
+                                    </h:form>
+                                </p:dialog>
+                                
+                            </f:facet>
+                            <p:panel class="panel_genre" header="#{item.idGenre}" style="text-align:center">
+                                <h:panelGrid columns="1" style="width:100%">
+                                    <h:outputText value="#{item.nomGenre}" />
+                                </h:panelGrid>
+                                </p:panel>
+                        </p:dataGrid>
+                    
+                    
+                    
+                    
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
