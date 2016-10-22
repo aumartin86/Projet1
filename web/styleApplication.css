@@ -191,6 +191,17 @@ and open the template in the editor.
     text-decoration: underline;
 }
 
+.souligner_noir{
+   
+    color:white;
+    font-weight: bold;
+}
+
+
+.noir{
+    color:#5E0000;
+}
+
 .tailleImage{
     width: 200px;
     height:200px;
@@ -291,4 +302,13 @@ and open the template in the editor.
 
 .bg5{
     background-image:url(image/test5.jpeg);
+}
+
+.fieldset_profil{
+    border:2px solid #5E0000;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;	
+    border-radius:8px;
+    
+    
 }
