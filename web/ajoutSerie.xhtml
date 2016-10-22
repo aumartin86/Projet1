@@ -63,18 +63,11 @@
                                             <br/>
                                             <br/>                                                                                        
                                             <pm:field>
-                                                <p:dataTable  style="width:360px;" value="#{realisateurControl.allRealisateur}"  var="valueRealisateur" rowKey="#{valueRealisateur.idRealisateur}" rows="3" paginator="true" paginatorPosition="bottom">
-                                                    <f:facet  name="header">
-                                                        <div style="font-size:15px;"> Sélection Réalisateur </div>
-                                                    </f:facet>
-                                                    <p:column style="width:30%; font-size:13px;">
-                                                        #{valueRealisateur.prenomRealisateur} #{valueRealisateur.nomRealisateur}
-                                                    </p:column>
-                                                    <p:column selectionMode="single" style="width:2%" />
-                                                    <f:facet  name="footer">
-                                                        <p:commandButton id="selectedRowBtn" value="valueRealisateur" action="#{serieControl.saisie.idRealisateur}"/>
-                                                    </f:facet>
-                                            </p:dataTable>
+                                            <p:outputLabel for="Real" value="Realisateur: " />
+                                            <p:selectOneMenu id="Real" value="#{serieControl.saisie.idRealisateur}">
+                                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                                <f:selectItems value="#{realisateurControl.allRealisateur}" var="Realisateur" itemValue="#{Realisateur}" itemLabel="#{Realisateur.nomRealisateur}"/>
+                                            </p:selectOneMenu>
                                             </pm:field>
                                             
                                            <br/>
@@ -87,17 +80,10 @@
                                            <br/>
                                             <br/>                                                                                        
                                             <pm:field>
-                                                
-                                                <p:dataTable  style="width:360px;" value="#{acteurControl.allActeurs}"  var="value" rowKey="#{value.idActeur}" rows="3" paginator="true" paginatorPosition="bottom">
-                                                    <f:facet name="header">
-                                                        <div style="font-size:15px;"> Sélection Acteurs </div>
-                                                    </f:facet>
-                                                    <p:column style="width:30%; font-size:13px;">
-                                                        #{value.prenomActeur} #{value.nomActeur}
-                                                    </p:column>
-                                                    <p:column selectionMode="multiple" style="width:2%" />
-                                                    </p:dataTable>
-                                                                                               
+                                              <p:outputLabel for="acteurs" value="Acteurs:" />
+                                              <p:selectManyMenu id="acteurs" value="#{serieControl.saisie.acteurCollection}" showCheckbox="true">
+                                                  <f:selectItems value="#{acteurControl.allActeurs}" var="acteurs" itemLabel="#{acteurs.nomActeur}" itemValue="#{Acteur}" />
+                                              </p:selectManyMenu>                            
                                             </pm:field>
                                             
                                             <br/>
