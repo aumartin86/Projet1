@@ -232,17 +232,3 @@ and open the template in the editor.
     height:580px;
     margin-left:210px;
 }
-
-#dock {
-	position:fixed;
-	bottom:4px;
-	left:50%;
-	background:white bottom no-repeat;
-	width:600px;
-	height:105px;
-	margin:auto;
-	margin-left:-300px;
-	padding:0px;
-	overflow:hidden;
-	text-align:center;
-}
