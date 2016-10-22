@@ -58,7 +58,8 @@
                                             <br/>
                                             
                                             <pm:field>
-                                                <p:fileUpload style="font-size:12px;" value="#{serieControl.file.affiche}" mode="simple" />
+                                                <h:outputLabel style="color:black; font-size: 15px;" value="Nom du fichier" for="fichier" />
+                                                <p:inputText style="height:13px; width: 255px; font-size:12px;" id="fichier" class="taille_saisie" value="#{serieControl.saisie.nomSerie}" title="fichier" required="true" requiredMessage="The file field is required."/>  
                                             </pm:field>
                                             <br/>
                                             <br/>                                                                                        
@@ -82,7 +83,7 @@
                                             <pm:field>
                                               <p:outputLabel for="acteurs" value="Acteurs:" />
                                               <p:selectManyMenu id="acteurs" value="#{serieControl.saisie.acteurCollection}" showCheckbox="true">
-                                                  <f:selectItems value="#{acteurControl.allActeurs}" var="acteurs" itemLabel="#{acteurs.nomActeur}" itemValue="#{Acteur}" />
+                                                  <f:selectItems value="#{acteurControl.allActeurs}" var="acteurs" itemLabel="#{acteurs.nomActeur} #{acteurs.prenomActeur}" itemValue="#{Acteur}" />
                                               </p:selectManyMenu>                            
                                             </pm:field>
                                             
@@ -90,15 +91,10 @@
                                             <br/>      
                                             
                                             <pm:field>
-                                                <p:dataTable  style="width:360px;" value="#{genreControl.allGenres}"  var="valueGenre" rowKey="#{valueGenre.idGenre}" rows="3" paginator="true" paginatorPosition="bottom">
-                                                    <f:facet name="header">
-                                                        <div style="font-size:15px;"> Sélection Réalisateur </div>
-                                                    </f:facet>
-                                                    <p:column style="width:30%; font-size:13px;">
-                                                        #{valueGenre.nomGenre} 
-                                                    </p:column>
-                                                    <p:column selectionMode="multiple" style="width:2%" />
-                                            </p:dataTable>
+                                                 <p:outputLabel for="genres" value="Genres:" />
+                                              <p:selectManyMenu id="genres" value="#{serieControl.saisie.genreCollection}" showCheckbox="true">
+                                                  <f:selectItems value="#{genreControl.allGenres}" var="genres" itemLabel="#{genres.nomGenre}" itemValue="#{Genre}" />
+                                              </p:selectManyMenu>                   
                                             </pm:field>
                                            
                                         </h:panelGrid>
