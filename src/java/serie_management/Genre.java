@@ -103,7 +103,7 @@ public class Genre implements Serializable {
 
     @Override
     public String toString() {
-        return "serie_management.Genre[ idGenre=" + idGenre + " ]";
+        return nomGenre;
     }
 
     public Collection<Serie> getSerieCollection() {

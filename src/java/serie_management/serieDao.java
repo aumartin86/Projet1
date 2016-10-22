@@ -40,4 +40,13 @@ public class serieDao {
     public void saveSerie(Serie serie){
         em.persist(serie);
     }
+    
+    public void modifier(Serie serie){
+        try{
+        
+        em.merge(serie);
+        } catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
 }

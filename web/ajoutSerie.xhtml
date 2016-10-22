@@ -3,7 +3,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:pm="http://primefaces.org/mobile">
+      xmlns:p="http://primefaces.org/ui" xmlns:pm="http://primefaces.org/mobile"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions">
 
     <f:view contentType="text/html">
         <h:head>
@@ -53,22 +55,22 @@
                                         <h:panelGrid columns="4">
                                             <pm:field>
                                             <h:outputLabel style="color:black; font-size: 15px;" value="Nom série:" for="nom" />
-                                            <p:inputText style="height:13px; width: 255px; font-size:12px;" id="nom" class="taille_saisie" value="#{serieControl.saisie.nomSerie}" title="Nom" required="true" requiredMessage="The Nom field is required."/>
+                                            <p:inputText style="height:13px; width: 255px; font-size:12px;" id="nom" class="taille_saisie" value="#{serieControl.saisie.nomSerie}" title="Nom" required="true" requiredMessage="Le nom du film doit être renseigné."/>
                                             </pm:field>
                                             <br/>
                                             
                                             <pm:field>
                                                 <h:outputLabel style="color:black; font-size: 15px;" value="Nom du fichier" for="fichier" />
-                                                <p:inputText style="height:13px; width: 255px; font-size:12px;" id="fichier" class="taille_saisie" value="#{serieControl.saisie.nomSerie}" title="fichier" required="true" requiredMessage="The file field is required."/>  
+                                                <p:inputText style="height:13px; width: 255px; font-size:12px;" id="fichier" class="taille_saisie" value="#{serieControl.saisie.affiche}" title="fichier" required="true" requiredMessage="Le nom du fichier doit être renseigné."/>  
                                             </pm:field>
                                             <br/>
                                             <br/>                                                                                        
                                             <pm:field>
                                             <p:outputLabel for="Real" value="Realisateur: " />
-                                            <p:selectOneMenu id="Real" value="#{serieControl.saisie.idRealisateur}">
+                                            <h:selectOneMenu id="Real" value="#{serieControl.saisie.idRealisateur}"  converter="omnifaces.SelectItemsConverter" required="true">
                                                 <f:selectItem itemLabel="Select One" itemValue="" />
-                                                <f:selectItems value="#{realisateurControl.allRealisateur}" var="Realisateur" itemValue="#{Realisateur}" itemLabel="#{Realisateur.nomRealisateur}"/>
-                                            </p:selectOneMenu>
+                                                <f:selectItems value="#{realisateurControl.allRealisateur}" var="Real" itemValue="#{Real}" itemLabel="#{Real.nomRealisateur} #{Real.prenomRealisateur}"/>
+                                            </h:selectOneMenu>
                                             </pm:field>
                                             
                                            <br/>
@@ -80,23 +82,6 @@
                                            
                                            <br/>
                                             <br/>                                                                                        
-                                            <pm:field>
-                                              <p:outputLabel for="acteurs" value="Acteurs:" />
-                                              <p:selectManyMenu id="acteurs" value="#{serieControl.saisie.acteurCollection}" showCheckbox="true">
-                                                  <f:selectItems value="#{acteurControl.allActeurs}" var="acteurs" itemLabel="#{acteurs.nomActeur} #{acteurs.prenomActeur}" itemValue="#{Acteur}" />
-                                              </p:selectManyMenu>                            
-                                            </pm:field>
-                                            
-                                            <br/>
-                                            <br/>      
-                                            
-                                            <pm:field>
-                                                 <p:outputLabel for="genres" value="Genres:" />
-                                              <p:selectManyMenu id="genres" value="#{serieControl.saisie.genreCollection}" showCheckbox="true">
-                                                  <f:selectItems value="#{genreControl.allGenres}" var="genres" itemLabel="#{genres.nomGenre}" itemValue="#{Genre}" />
-                                              </p:selectManyMenu>                   
-                                            </pm:field>
-                                           
                                         </h:panelGrid>
                                         <br/>
                                         
@@ -109,17 +94,18 @@
                             <p:accordionPanel  activeIndex="true"> 
                                 <p:tab title="#{item.nomSerie}">
                                     
-                                    <p:commandButton style="margin-left:43%;" id="iconOnly" icon="ui-icon-pencil" title="Modifier" />
+                                    <p:commandButton update=":form2:genreDetail2" style="margin-left:43%;" id="iconOnly" icon="ui-icon-pencil" title="Modifier" onclick="PF('dlg3').show();">
+                                    <f:setPropertyActionListener value="#{item}" target="#{serieControl.saisie}" />
+                                     </p:commandButton>
                                     
                                     <p:commandButton update=":form:genreDetail" style="margin-left:10px;"  id="iconOnly2" icon="ui-icon-trash" title="Supprimer" onclick="PF('dlg1').show();">
-                                        
                                         <f:setPropertyActionListener value="#{item}" target="#{serieControl.saisie}" />
                                     </p:commandButton>
                                     
                                     
                                     
                                     <h:panelGrid  columns="2" cellpadding="10">                                        
-                                        <img class="tailleImage"  alt="vraiImage" src="#{item.affiche}"/> 
+                                        <img class="tailleImage"  alt="vraiImage" src="image/#{item.affiche}"/> 
                                         <p:panelGrid columns="1" style="width:100%">
                                         <p:outputLabel class="souligner" value="Résumé"/>
                                         <h:outputText value="#{item.resumeSerie}"/>
@@ -172,6 +158,34 @@
                                 </h:panelGrid>        
                                 <br/>
                                 <p:commandButton value="Supprimer" action="#{serieControl.supprimerSerie()}" oncomplete="PF('dlg1').hide();"/>
+                                        
+                            </p:outputPanel>   
+                               </h:form>   
+                        </p:dialog>
+                    
+                    
+                    
+                          <p:dialog  class="formulaire_modif" header="Modfier une série" widgetVar="dlg3"  resizable="false" modal="true" appendTo="@(body)">
+                           <h:form id="form2">
+                            <p:outputPanel  id="genreDetail2" style="text-align:center;" >
+
+                                <h:panelGrid  columns="2" > 
+                                    <h:outputLabel class="formulaire_modification" value="ID :" for="id" />
+                                    <h:outputText id="id" class="formulaire_modification"  value="#{serieControl.saisie.idSerie}" title="id" />
+                                    <h:outputLabel class="formulaire_modification" value="Nom :" for="nom" />
+                                    <h:inputText id="newnom" class="formulaire_modification" value="#{serieControl.saisie.nomSerie}" title="Nom" /> 
+                                    <h:outputText style="height:167px; font-size:12px;" class="taille_resume" id="textoutarea" value="#{serieControl.saisie.resumeSerie}" />
+                                    <h:inputTextarea style="height:167px; font-size:12px;" class="taille_resume"  id="textarea" value="#{serieControl.saisie.resumeSerie}" />
+                                    <h:outputLabel class="formulaire_modification" value="Affiche :" for="affiche" />
+                                    <h:inputText id="newprenomreal" class="formulaire_modification" value="#{serieControl.saisie.affiche}" title="Nom" />
+                                    <h:outputLabel for="Real" value="Realisateur: " />
+                                    <h:selectOneMenu id="Real" value="#{serieControl.saisie.idRealisateur}"  converter="omnifaces.SelectItemsConverter" required="true">
+                                     <f:selectItem itemLabel="Select One" itemValue="" />
+                                     <f:selectItems value="#{realisateurControl.allRealisateur}" var="Real" itemValue="#{Real}" itemLabel="#{Real.nomRealisateur} #{Real.prenomRealisateur}"/>
+                                    </h:selectOneMenu>
+                                </h:panelGrid>        
+                                <br/>
+                                <p:commandButton value="Modifier" action="#{serieControl.modifier()}" oncomplete="PF('dlg2').hide();"/>
                                         
                             </p:outputPanel>   
                                </h:form>   
