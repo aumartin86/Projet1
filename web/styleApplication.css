@@ -274,37 +274,21 @@ and open the template in the editor.
 }
 
 .littleBoxes div.boxcontent{
-    width:334px;
-    height:246px;
+    width:1278px;
+    height:430px;
     text-align:left;
-    padding:10px;
-    font-size:16px;
-    background-color:#f0f0f0;
-    border:2px solid #fff;
+    padding:5px;
+    font-size:12px;
+    background-color:white;
+    border:1px solid #fff;
     margin:10px 0px 0px 10px;
-    text-shadow:1px 1px 1px #fff;
-    -moz-box-shadow:1px 1px 3px #777;
-    -webkit-box-shadow:1px 1px 3px #777;
-    box-shadow:1px 1px 3px #777;
-    opacity:0.8;
     display:none;
 }
 
 .bg1, .bg2, .bg3, .bg4{
     background-repeat:no-repeat;
 }
-.bg1{
-    background-image:url(image/logo.PNG);
-}
-.bg2{
-    background-image:url(image/logo.PNG);
-}
-.bg3{
-    background-image:url(image/logo.PNG);
-}
-.bg4{
-    background-image:url(image/logo.PNG);
-}
+
 .bg5{
     background-image:url(image/test5.jpeg);
 }
