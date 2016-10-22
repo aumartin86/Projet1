@@ -95,5 +95,13 @@ public class serieControl implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
+    
+    
+     public String modifier(){    
+        serieDao.modifier(saisie);
+        addMessage("Confirmation","La série "+saisie.getNomSerie()+" a bien été modifiée !");
+        return "afficheSeries";
+    }   
+    
 
 }
