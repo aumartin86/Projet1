@@ -151,7 +151,29 @@
                                     <a href="homeAdmin">Profil</a>
                                     <!-- Contenu du boxlink -->
                                     <div class="boxcontent">
-                                        <p> coucou </p>
+                                     
+                                    <p:accordionPanel multiple="true">
+                                        <p:tab title="Vos informations">
+                                            <h:panelGrid columns="2" >
+                                                <p:outputLabel style="font-size:16px;" class="souligner_noir" value="Nom : "/>
+                                                <h:outputText value="MARTIN"/>
+                                                
+                                                <p:outputLabel style="font-size:16px;" class="souligner_noir" value="Prénom : "/>
+                                                <h:outputText value="Audrey"/>
+                                                
+                                                <p:outputLabel style="font-size:16px;" class="souligner_noir" value="Nombre de série suivie : "/>
+                                                <h:outputText value="3"/>
+                                            </h:panelGrid>
+                                        </p:tab>
+                                        <p:tab title="Vos Favoris">
+                                            <h:panelGrid columns="2" cellpadding="10">
+                                                toto
+                                                <h:outputText value="Francis Ford Coppola's legendary..." />
+                                            </h:panelGrid>
+                                        </p:tab>
+
+                                    </p:accordionPanel>
+                                        
                                     </div>
                             </div>
                             
@@ -170,7 +192,23 @@
                             <div class="boxlink bg2" style="top:95px;left:95px;">
                                 <a href="">Réalisateurs</a>
                                 <div class="boxcontent">
-                                    <p> coucou2 </p>
+                                    <div>        
+                        <p:dataGrid  var="item" value="#{realisateurControl.allRealisateur}" columns="1"
+                        rows="10" paginator="true" paginatorPosition="bottom" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        >
+                            <f:facet name="header">
+                                Liste des réalisateurs
+                            </f:facet >
+                            
+                            <p:accordionPanel  activeIndex="true"> 
+                                <p:tab title="#{item.prenomRealisateur} #{item.nomRealisateur}">
+                                            toto
+                                        </p:tab>
+                                    </p:accordionPanel>
+
+                                </p:dataGrid> 
+                                    </div>
                                 </div>
                             </div>
                             
