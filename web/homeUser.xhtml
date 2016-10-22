@@ -22,13 +22,98 @@
         <h:body class="fond_page">
             
 
+            <script> 
+            $(function() {
+            /* object to save the initial positions of each box */
+            var divinfo = {"initial": []};
+            /* index of the selected / clicked box */
+            var current = -1;
 
+            /* we save the index,top and left of each box */
+            $('#littleBoxes > div').each(function(){
+                var $this = $(this);
+                var initial = {
+                    'index' : $this.index(),
+                    'top'     : $this.css('top'),
+                    'left'     : $this.css('left')
+                };
+                divinfo.initial.push(initial);
+            });
+
+            /* click event for the anchors inside of the boxes */
+            $('#littleBoxes a').bind('click',function(e){
+                var $this = $(this);
+                var $currentBox = $this.parent();
+            /* set a z-index lower than all the other boxes,
+            to see the other boxes animation on the top*/
+                $currentBox.css('z-index','1');
+            /* if we are clicking on an expanded box: */
+                if(current == $currentBox.index()){
+                    /* put it back (decrease width, height,
+                    and set the top and left back)
+                    the previous positions are saved in the divinfo obj*/
+                    $currentBox.stop().animate({
+                       'top'  : divinfo.initial[$currentBox.index()].top,
+                       'left' : divinfo.initial[$currentBox.index()].left,
+                       'width'  : '90px',
+                       'height' : '90px'
+                    },800,'easeOutBack').find('.boxcontent').fadeOut();
+
+                    $('#littleBoxes > div').not($currentBox).each(function(){
+                        var $ele = $(this);
+                        var elemTop = divinfo.initial[$ele.index()].top;
+                        var elemLeft = divinfo.initial[$ele.index()].left;
+                        $ele.stop().show().animate({
+                            'top'         : elemTop,
+                            'left'        : elemLeft,
+                            'opacity'    : 1
+                        },800);
+                    });
+                    current = -1;
+                }
+            /* if we are clicking on a small box : */
+                else{
+                    /* randomly animate all the other boxes.
+                    Math.floor(Math.random()*601) - 150 creates a random
+                    number between -150 and 450. This range is considering
+                    the initial lefts/tops of the elements. It's not the exact
+                    range, since we would have to calculate the range
+                    based on each one of the boxes. Anyway, it fits our needs...
+                    */
+                    $('#littleBoxes > div').not($currentBox).each(function(){
+                        var $ele = $(this);
+                        $ele.stop().animate({
+                            'top' : (Math.floor(Math.random()*601) - 150) +'px',
+                            'left': (Math.floor(Math.random()*601) - 150) +'px',
+                            'opacity':0
+                        },800,function(){
+                        $(this).hide();
+                        });
+                    });
+
+                    /* expand the clicked one;
+                    also, fadeIn the content (boxcontent)
+                    */
+                    var newwidth     = 1318;
+                    var newheight     = 560;
+                    $currentBox.stop().animate({
+                        'top'     : '-93px',
+                        'left'    : '-435px',
+                        'width' : newwidth +'px',
+                        'height': newheight+'px'
+                    },800,'easeOutBack',function(){
+                        current = $currentBox.index();
+                        $(this).find('.boxcontent').fadeIn();
+                    });
+                }
+                e.preventDefault();
+            });
+            });
+            </script>
 
             <p:layout fullPage="true">
-                
-                
-                
 
+                <!-- Bandeau au nord -->
                 <p:layoutUnit  position="north" size="50" closable="true" collapsible="true">
                     <div class="gauche"> 
                         <h1 class="titre_accueil_user">Serie Management</h1> 
@@ -38,33 +123,100 @@
                         <p:button class="bouton_admin" outcome="homeUser" id="iconOnly" icon="ui-icon-home" title="Page d'accueil" />
                         <p:button class="bouton_admin" outcome="index" icon="ui-icon-power" title="Déconnexion" />
                     </div> 
-                    
-                    
                 </p:layoutUnit>
                 
-
-                <p:layoutUnit position="south" size="200" closable="true" collapsible="true">
+                <!-- Bandeau au sud -->
+                <p:layoutUnit position="south" size="20" closable="true" collapsible="true">
                   
                 </p:layoutUnit>
                 
-
-                <p:layoutUnit  position="west" size="240" header="Menu" style="font-size: 15px;" collapsible="true" >                   
+                <!-- Bandeau à gauche -->
+                <p:layoutUnit  position="west" size="240" header="Menu" style="font-size: 15px;" collapsible="true" collapsed="true">                   
                     <div style="margin-top:10px;">
                         <p:inputText style="margin-right:10px; width:169px;" placeholder="Search"/>
                         <p:commandButton type="button" icon="ui-icon-search" />      
                     </div>
-                     
-            
                 </p:layoutUnit>
                     
 
-                <p:layoutUnit position="center" style="background:white;" >
-                    <div style="height:100.7%; width:100%; background:white;">
+                <!-- Bandeau au centre -->
+                <p:layoutUnit position="center" style="background:url('image/fond_bois.jpeg');" >
+                    
+                    <div style="height:100.7%; width:100%;background:url('image/fond_bois.jpeg'); ">                        
+                        <div id="littleBoxes" class="littleBoxes">
+                            <!-- *************************************************************** -->
+                            
+                            <!-- Premier lien en haut a gauche -->
+                            <div class="boxlink bg1" style="top:0px;left:0px;">
+                                    <a href="homeAdmin">Profil</a>
+                                    <!-- Contenu du boxlink -->
+                                    <div class="boxcontent">
+                                        <p> coucou </p>
+                                    </div>
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-90px 0;top:0px;left:95px;">                                   
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-180px 0;top:0px;left:190px;">                                    
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-270px 0;top:0px;left:285px;">                                
+                            </div>
+
+                            <div class="bg5" style="background-position:0 -90px;top:95px;left:0px;">                                
+                            </div>
+                            <!-- *************************************************************** -->
+                            <div class="boxlink bg2" style="top:95px;left:95px;">
+                                <a href="">Réalisateurs</a>
+                                <div class="boxcontent">
+                                    <p> coucou2 </p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-180px -90px;top:95px;left:190px;">                                
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-270px -90px;top:95px;left:285px;">                                
+                            </div>
+
+                            <div class="bg5" style="background-position:0 -180px;top:190px;left:0px;">                                
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-90px -180px;top:190px;left:95px;">                                
+                            </div>
+                            <!-- *************************************************************** -->                    
+                            <div class="boxlink bg3" style="top:190px;left:190px;">
+                                <a href="">Genres</a>
+                                    <div class="boxcontent">
+                                        <p> coucou3 </p>
+                                    </div>
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-270px -180px;top:190px;left:285px;">                                
+                            </div>
+
+                            <div class="bg5" style="background-position:0 -270px;top:285px;left:0px;"> 
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-90px -270px;top:285px;left:95px;">                                
+                            </div>
+                            
+                            <div class="bg5" style="background-position:-180px -270px;top:285px;left:190px;">                                
+                            </div>
+                        
+                        <!-- *************************************************************** -->
+                            <div class="boxlink bg4" style="top:285px;left:285px;">
+                                    <a href="">Acteurs</a>
+                                    <div class="boxcontent">
+                                        <p> coucou4</p>
+                                    </div>
+                            </div>
+                        </div>
                         
                     </div>
-                      
-                    
                 </p:layoutUnit>
+                
 
             </p:layout>
 
