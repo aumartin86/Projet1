@@ -67,21 +67,35 @@
                                             <br/>                                                                                        
                                             <pm:field>
                                             <p:outputLabel for="Real" value="Realisateur: " />
-                                            <h:selectOneMenu id="Real" value="#{serieControl.saisie.idRealisateur}"  converter="omnifaces.SelectItemsConverter" required="true">
+                                            <p:selectOneMenu id="Real" value="#{serieControl.saisie.idRealisateur}"  converter="omnifaces.SelectItemsConverter" required="true" filter="true" filterMatchMode="contains">
                                                 <f:selectItem itemLabel="Select One" itemValue="" />
                                                 <f:selectItems value="#{realisateurControl.allRealisateur}" var="Real" itemValue="#{Real}" itemLabel="#{Real.nomRealisateur} #{Real.prenomRealisateur}"/>
-                                            </h:selectOneMenu>
+                                            </p:selectOneMenu>
                                             </pm:field>
-                                            
                                            <br/>
                                            <br/>
                                            
                                            <pm:field>
                                                <p:inputTextarea style="height:167px; font-size:12px;" class="taille_resume" placeholder="Résumé" id="textarea" value="#{serieControl.saisie.resumeSerie}" />
                                            </pm:field>
-                                           
+                                          
                                            <br/>
-                                            <br/>                                                                                        
+                                            <br/>       
+                                            
+                                            <pm:field>
+                                            <h:outputLabel for="gen" value="Genre(s): " />
+                                                <p:selectManyMenu id="Genre" value="#{serieControl.saisie.genreCollection}"  converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                                <f:selectItems value="#{genreControl.allGenres}" var="gen" itemValue="#{gen}" itemLabel="#{gen.nomGenre}"/>
+                                                </p:selectManyMenu>
+                                             </pm:field>
+                                            
+                                            
+                                            <pm:field>
+                                            <h:outputLabel for="act" value="Acteur(s): " />
+                                                <p:selectManyMenu id="Acteur" value="#{serieControl.saisie.acteurCollection}"  converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                                <f:selectItems value="#{acteurControl.allActeurs}" var="act" itemValue="#{act}" itemLabel="#{act.nomActeur} #{act.prenomActeur}"/>
+                                                </p:selectManyMenu>
+                                             </pm:field>
                                         </h:panelGrid>
                                         <br/>
                                         
@@ -169,7 +183,7 @@
                            <h:form id="form2">
                             <p:outputPanel  id="genreDetail2" style="text-align:center;" >
 
-                                <h:panelGrid  columns="2" > 
+                                <h:panelGrid  columns="4" > 
                                     <h:outputLabel class="formulaire_modification" value="ID :" for="id" />
                                     <h:outputText id="id" class="formulaire_modification"  value="#{serieControl.saisie.idSerie}" title="id" />
                                     <h:outputLabel class="formulaire_modification" value="Nom :" for="nom" />
@@ -183,6 +197,16 @@
                                      <f:selectItem itemLabel="Select One" itemValue="" />
                                      <f:selectItems value="#{realisateurControl.allRealisateur}" var="Real" itemValue="#{Real}" itemLabel="#{Real.nomRealisateur} #{Real.prenomRealisateur}"/>
                                     </h:selectOneMenu>
+                                    <h:outputLabel for="act" value="Acteur(s): " />
+                                                <p:selectManyMenu id="Acteur" value="#{serieControl.saisie.acteurCollection}"  converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                                <f:selectItems value="#{acteurControl.allActeurs}" var="act" itemValue="#{act}" itemLabel="#{act.nomActeur} #{act.prenomActeur}"/>
+                                                </p:selectManyMenu>
+                                    <h:outputLabel for="gen" value="Genre(s): " />
+                                                <p:selectManyMenu id="Genre" value="#{serieControl.saisie.genreCollection}"  converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                                <f:selectItems value="#{genreControl.allGenres}" var="gen" itemValue="#{gen}" itemLabel="#{gen.nomGenre}"/>
+                                                </p:selectManyMenu>
+                                    
+                                    
                                 </h:panelGrid>        
                                 <br/>
                                 <p:commandButton value="Modifier" action="#{serieControl.modifier()}" oncomplete="PF('dlg2').hide();"/>
