@@ -72,16 +72,22 @@
                                                 <f:selectItems value="#{realisateurControl.allRealisateur}" var="Real" itemValue="#{Real}" itemLabel="#{Real.nomRealisateur} #{Real.prenomRealisateur}"/>
                                             </h:selectOneMenu>
                                             </pm:field>
-                                            
                                            <br/>
                                            <br/>
                                            
                                            <pm:field>
                                                <p:inputTextarea style="height:167px; font-size:12px;" class="taille_resume" placeholder="Résumé" id="textarea" value="#{serieControl.saisie.resumeSerie}" />
                                            </pm:field>
-                                           
+                                          
                                            <br/>
-                                            <br/>                                                                                        
+                                            <br/>       
+                                            
+                                            <pm:field>
+                                            <h:outputLabel for="gen" value="Genre: " />
+                                    <h:selectManyMenu id="Genre" value="#{serieControl.saisie.genreCollection}"  converter="omnifaces.SelectItemsConverter" required="true">
+                                        <f:selectItems value="#{genreControl.allGenres}" var="gen" itemValue="#{gen}" itemLabel="#{gen.nomGenre}"/>
+                                    </h:selectManyMenu>
+                                     </pm:field>
                                         </h:panelGrid>
                                         <br/>
                                         
