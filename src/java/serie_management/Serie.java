@@ -7,6 +7,7 @@ package serie_management;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,8 +43,8 @@ public class Serie implements Serializable {
     private Collection<Acteur> acteurCollection;
 
     @ManyToMany(mappedBy = "serieCollection")
-    private Collection<Genre> genreCollection;
-
+    private List<Genre> genreCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSerie")
     private Collection<Saison> saisonCollection;
 
@@ -156,11 +157,11 @@ public class Serie implements Serializable {
         this.saisonCollection = saisonCollection;
     }
 
-    public Collection<Genre> getGenreCollection() {
+    public List<Genre> getGenreCollection() {
         return genreCollection;
     }
 
-    public void setGenreCollection(Collection<Genre> genreCollection) {
+    public void setGenreCollection(List<Genre> genreCollection) {
         this.genreCollection = genreCollection;
     }
 

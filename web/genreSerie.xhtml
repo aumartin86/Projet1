@@ -75,7 +75,7 @@
                                             <h:outputText value="#{genres.nomGenre}" />
                                         </p:column>
                                         <f:facet name="footer">
-                                            <p:commandButton title="Ajouter les acteurs" value="Ajouter" action="#{genreControl.modifier()}" oncomplete="PF('dlg').hide();"/>
+                                            <p:commandButton process="checkboxDT" title="Ajouter les acteurs" value="Ajouter" action="#{serieControl.modifier()}" oncomplete="PF('dlg').hide();"/>
                                         </f:facet>
                                 </p:dataTable>
 
