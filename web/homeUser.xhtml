@@ -192,22 +192,24 @@
                             <div class="boxlink bg2" style="top:95px;left:95px;">
                                 <a href="">Réalisateurs</a>
                                 <div class="boxcontent">
-                                    <div>        
-                        <p:dataGrid  var="item" value="#{realisateurControl.allRealisateur}" columns="1"
-                        rows="10" paginator="true" paginatorPosition="bottom" 
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        >
-                            <f:facet name="header">
-                                Liste des réalisateurs
-                            </f:facet >
-                            
-                            <p:accordionPanel  activeIndex="true"> 
-                                <p:tab title="#{item.prenomRealisateur} #{item.nomRealisateur}">
-                                            toto
-                                        </p:tab>
-                                    </p:accordionPanel>
-
-                                </p:dataGrid> 
+                                    <div style="border-color:red; border-style:solid; height:300px;">        
+                                        <p:dataTable id="acteurDetail1" var="item" value="#{realisateurControl.allRealisateur}">
+                        
+                                        <f:facet name="header">
+                                        Liste des réalisateurs
+                                        </f:facet>
+                                            
+                                        <p:column headerText="" >
+                                            <p:accordionPanel  activeIndex="true"> 
+                                                <p:tab title="#{item.nomRealisateur} #{item.prenomRealisateur}">
+                                                   
+                                                </p:tab>
+                                            </p:accordionPanel>
+                                         </p:column>
+                        
+                       
+                    
+                                        </p:dataTable>
                                     </div>
                                 </div>
                             </div>
@@ -223,11 +225,28 @@
                             
                             <div class="bg5" style="background-position:-90px -180px;top:190px;left:95px;">                                
                             </div>
+                            
                             <!-- *************************************************************** -->                    
                             <div class="boxlink bg3" style="top:190px;left:190px;">
                                 <a href="">Genres</a>
-                                    <div class="boxcontent">
-                                        <p> coucou3 </p>
+                                    <div class="boxcontent"  >
+                                        <div style="border-color:red; border-style:solid; height:300px;">        
+                                            <p:dataGrid  style="border-color:blue; border-style:solid; height:300px;" var="item" value="#{genreControl.allGenres}" columns="1"
+                                        rows="8" paginator="true" paginatorPosition="top" 
+                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        >
+                                            <f:facet name="header">
+                                                Liste des genres
+                                            </f:facet >
+
+                                            <p:accordionPanel  activeIndex="true"> 
+                                                <p:tab title="#{item.nomGenre}">
+                                                            toto
+                                                </p:tab>
+                                            </p:accordionPanel>
+
+                                        </p:dataGrid> 
+                                    </div>
                                     </div>
                             </div>
                             
