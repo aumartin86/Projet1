@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,10 +36,7 @@ import javax.validation.constraints.Size;
 
 public class Genre implements Serializable {
 
-    @JoinTable(name = "est", joinColumns = {
-        @JoinColumn(name = "Id_Genre", referencedColumnName = "Id_Genre")}, inverseJoinColumns = {
-        @JoinColumn(name = "Id_Serie", referencedColumnName = "Id_Serie")})
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "genreCollection")  
     private Collection<Serie> serieCollection;
 
     private static final long serialVersionUID = 1L;

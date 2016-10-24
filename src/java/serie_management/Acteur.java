@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,11 +36,9 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Acteur.findByPrenomActeur", query = "SELECT a FROM Acteur a WHERE a.prenomActeur = :prenomActeur")})
 public class Acteur implements Serializable {
 
-    @JoinTable(name = "joue", joinColumns = {
-        @JoinColumn(name = "Id_Acteur", referencedColumnName = "Id_Acteur")}, inverseJoinColumns = {
-        @JoinColumn(name = "Id_Serie", referencedColumnName = "Id_Serie")})
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "acteurCollection")  
     private Collection<Serie> serieCollection;
+
 
     private static final long serialVersionUID = 1L;
     @Id

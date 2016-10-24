@@ -98,6 +98,9 @@ public class serieControl implements Serializable {
     
     
      public String modifier(){    
+        System.err.println("ModifSerie");
+        System.err.println("id_serie"+saisie.getIdSerie());
+        System.err.println("id_serie"+saisie.getGenreCollection());
         serieDao.modifier(saisie);
         addMessage("Confirmation","La série "+saisie.getNomSerie()+" a bien été modifiée !");
         return "afficheSeries";

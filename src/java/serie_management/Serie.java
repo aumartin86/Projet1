@@ -12,10 +12,12 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -39,10 +41,17 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Serie.findByAffiche", query = "SELECT s FROM Serie s WHERE s.affiche = :affiche")})
 public class Serie implements Serializable {
 
-    @ManyToMany(mappedBy = "serieCollection")
-    private Collection<Acteur> acteurCollection;
+    @ManyToMany(fetch = FetchType.EAGER)
+      @JoinTable(name = "JOUE",
+        joinColumns = @JoinColumn(name = "id_Serie"),
+        inverseJoinColumns = @JoinColumn(name = "id_Acteur"))
+    private List<Acteur> acteurCollection;
 
-    @ManyToMany(mappedBy = "serieCollection")
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+        @JoinTable(name = "EST",
+        joinColumns = @JoinColumn(name = "id_Serie"),
+        inverseJoinColumns = @JoinColumn(name = "id_Genre"))
     private List<Genre> genreCollection;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSerie")
@@ -165,11 +174,11 @@ public class Serie implements Serializable {
         this.genreCollection = genreCollection;
     }
 
-    public Collection<Acteur> getActeurCollection() {
+    public List<Acteur> getActeurCollection() {
         return acteurCollection;
     }
 
-    public void setActeurCollection(Collection<Acteur> acteurCollection) {
+    public void setActeurCollection(List<Acteur> acteurCollection) {
         this.acteurCollection = acteurCollection;
     }
 

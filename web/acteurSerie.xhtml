@@ -61,7 +61,24 @@
                             </p:column> 
                         
                     </p:dataTable>
+                        <p:dialog  class="formulaire_ajout" header="Modifier les acteurs" widgetVar="dlg"  resizable="false" modal="true" appendTo="@(body)" >
+                            <h:form id="form"> 
+                                <p:dataTable id="checkboxDT" var="acteurs" value="#{acteurControl.allActeurs}" selection="#{serieControl.saisie.acteurCollection}" rowKey="#{acteurs.idActeur}"  scrollable="true" scrollHeight="50%">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{serieControl.saisie.nomSerie}" />
+                                        </f:facet>
+                                        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                                        <p:column headerText="Nom Acteur">
+                                            <h:outputText value="#{acteurs.nomActeur} #{acteurs.prenomActeur}" />
+                                        </p:column>
+                                        <f:facet name="footer">
+                                            <p:commandButton process="checkboxDT" title="Ajouter les acteurs" value="Ajouter" action="#{serieControl.modifier()}" oncomplete="PF('dlg').hide();"/>
+                                        </f:facet>
+                                </p:dataTable>
 
+                               
+                            </h:form>
+                        </p:dialog> 
                 </p:layoutUnit>
 
             </p:layout>
