@@ -23,16 +23,9 @@ and open the template in the editor.
                                 <p:menuitem value="Gérer les genres" outcome="genreSerie" update="messages" icon="ui-icon-tag" />
                             </p:submenu>
 
-                            <p:submenu class="submenu"  label="Gestion Saisons" icon="ui-icon-note" style="margin-bottom: 15px">
-                                <p:menuitem value="Ajouter" outcome="ajoutSerie" update="messages" icon="ui-icon-plus" />
-                                <p:menuitem value="Modifier" outcome="ajoutSerie" update="messages" icon="ui-icon-refresh" />
-                                <p:menuitem value="Supprimer" outcome="ajoutSerie" update="messages" icon="ui-icon-trash" />
-                            </p:submenu>
-
-                            <p:submenu class="submenu"  label="Gestion Episodes" icon="ui-icon-play" style="margin-bottom: 15px">
-                                <p:menuitem value="Ajouter" outcome="ajoutSerie" update="messages" icon="ui-icon-plus" />
-                                <p:menuitem value="Modifier" outcome="ajoutSerie" update="messages" icon="ui-icon-refresh" />
-                                <p:menuitem value="Supprimer" outcome="ajoutSerie" update="messages" icon="ui-icon-trash" />
+                            <p:submenu class="submenu"  label="Gestion Notes" icon="ui-icon-star" style="margin-bottom: 15px">
+                                <p:menuitem value="Afficher les notes" outcome="afficheNotes" update="messages" icon="ui-icon-note" />
+                                <p:menuitem value="Validation notes" outcome="validationNotes" update="messages" icon="ui-icon-circle-check" />
                             </p:submenu>
 
                             <p:submenu class="submenu"  label="Gestion Réalisateurs" icon="ui-icon-person" style="margin-bottom: 15px">

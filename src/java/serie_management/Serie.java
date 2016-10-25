@@ -41,6 +41,9 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Serie.findByAffiche", query = "SELECT s FROM Serie s WHERE s.affiche = :affiche")})
 public class Serie implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSerie")
+    private Collection<Note> noteCollection;
+
     @ManyToMany(fetch = FetchType.EAGER)
       @JoinTable(name = "JOUE",
         joinColumns = @JoinColumn(name = "id_Serie"),
@@ -188,6 +191,14 @@ public class Serie implements Serializable {
 
     byte[] getBytes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Collection<Note> getNoteCollection() {
+        return noteCollection;
+    }
+
+    public void setNoteCollection(Collection<Note> noteCollection) {
+        this.noteCollection = noteCollection;
     }
     
 }
